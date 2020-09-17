@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making An Expression Validation App Using JavaScript</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Making An Expression Validation App Using JavaScript  BY jakariya Shakil-->
+<!-- You will make an app which will validate an expression whether it is correct or not. -->
+
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+
+
+        .validate {
+            width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .validate h2 {
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .validate ul {
+            list-style: none;
+        }
+
+        .validate ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="validate">
+        <h2>Validate Your information</h2>
+
+        <ul>
+            <li> <button onclick="emailFunction()">Email</button></li>
+            <li><button id="phnBtn" onclick="phoneFunction()">Phone Number</button></li>
+            <li><button id="PostBtn" onclick="postFunction()">Post Code</button> </li>
+            <li><button id="nameBtn" onclick="nameFunction()">Name</button> </li>
+            
+            
+
+        </ul>
+        <p id="output"></p>
+    </div>
+
+
+
+
+
+    <h2 id='result'></h2>
+    <script>
+        function emailFunction() {
+            var txt;
+            var email = prompt("Please enter your Email:");
+            if (email == null || email == "") {
+                txt = "User cancelled the prompt.";
+            } else {
+                function validateEmail(email) {
+                    const re =
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(email);
+                }
+
+                if (validateEmail(email)) {
+                    txt = "Your " + email + " is valid email ";
+
+                } else {
+                    txt = "Your " + email + " is not valid email ";
+
+                }
+
+
+
+                // txt = "Your " + email + "! How are you today?";
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+
+
+
+        function nameFunction() {
+            var txt;
+            var name = prompt("Please enter your name:", );
+            if (name == null || name == "") {
+                txt = "User cancelled the prompt.";
+            } else {
+                function validateName(name) {
+                    const rn =
+                        /^[A-Za-z]+([\ A-Za-z]+)*/;
+                    return rn.test(name);
+                }
+
+                if (validateName(name)) {
+                    txt = "Your " + name + " is valid Name ";
+
+                } else {
+                    txt = "Your " + name + " is not valid Name ";
+
+                }
+
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+
+        function postFunction() {
+            var txt;
+            var postcode = prompt("Please enter your Postal Code: as 1205",);
+            if (postcode == null || postcode == "") {
+                txt = "User cancelled the prompt.";
+            } else {
+                function validatePostCode(postcode) {
+
+                  
+                    const post =RegExp('^[0-9]{4}$');
+                  
+                    return post.test(postcode);
+                }
+
+                if (validatePostCode(postcode)) {
+                    txt = "Your " + postcode + " is valid Postal Code ";
+
+                } else {
+                    txt = "Your " + postcode + " is not valid Postal Code ";
+
+                }
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+
+        function phoneFunction() {
+            var txt;
+            var phoneNumber = prompt("Please enter your Phone Number as: 01715-259395", );
+            if (phoneNumber == null || phoneNumber == "") {
+                txt = "User cancelled the prompt.";
+
+            } else {
+                txt = "Hello " + phoneNumber + "! How are you today?";
+
+                function validatePhone(phoneNumber) {
+
+                    
+                    const phoneno = /^\(?([0-9]{5})\)?[-. ]?([0-9]{6})$/;
+                    var digits = phoneNumber.replace(/\D/g, "");
+                    return phoneno.test(phoneNumber);
+                }
+
+                if (validatePhone(phoneNumber)) {
+                    txt = "Your " + phoneNumber + " is valid Phone Number ";
+
+                } else {
+                    txt = "Your " + phoneNumber + " is not valid Phone Number ";
+
+                }
+            }
+            document.getElementById("output").innerHTML = txt;
+            exit(0);
+        }
+
+    </script>
+</body>
+
+</html>
